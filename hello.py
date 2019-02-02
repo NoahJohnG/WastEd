@@ -8,16 +8,15 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 def main():
-
 	# Instantiates a client
 	client = vision.ImageAnnotatorClient()
 
 	# The name of the image file to annotate
 	file_name = os.path.join(
-		os.path.dirname(__file__),
-		'bread.jpg')
+		os.path.dirname(__file__),'bread.jpg')
 
-	ard = serial.Serial('/dev/cu.usbmodem1141', 9600, timeout=5)
+	ard = serial.Serial("/dev/cu.usbmodem1411", 9600, timeout=2)
+	time.sleep(2)
 
 	with io.open("recycle.txt", "r") as recycle_file:
 		recycle_list = recycle_file.readlines()
@@ -75,6 +74,8 @@ def int_to_byte(x):
 
 def write_to_arduino(x, ard):
 	ard.write(x)
-	time.sleep(.5)
+	time.sleep(2)
 	msg = ard.readline()
-	print(msg)
+    print(msg)
+if __name__ == "__main__":
+	main()
