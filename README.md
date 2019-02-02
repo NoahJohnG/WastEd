@@ -21,7 +21,7 @@
   
 ## recycle.txt
   * key words indicating waste category is compost 
-  
-  
 
-  
+## vidCap.py  
+  * records motion tracking video
+  * saves a jpeg photo of an object placed onto staging area
