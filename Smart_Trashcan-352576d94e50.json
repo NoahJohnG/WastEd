@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "smart-trashcan-230506",
+  "private_key_id": "352576d94e50d1625cd44dd229802ca9855068d5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCvq2OJR22MiCry\nBFjomUmBAJafyF9ldBhCYU9slOYAVnmfYVd3mPj6d8UL8qJzSTBZltQSkggdPHAe\npnkDG2xciwLGUqKWw82bkGsC24bsLCN9DLnm7+F2rwHP5ov9yRnclMbL9KJIPlms\ntClrUyGeZN/APF4+Qr+GqBnMyKsBOqGNmEqEXGRfWms0MzYstD0yQtJYzj09WrHI\n6c9YlrftbnRJmyrzPn8VoH29EVurWaZcxuZeWTCzxOkD1T9I+vaxHGQm2KxkJltw\ngkBTIWhioIu2yqRNH+qP7x4koCm8gEGa++e6rv9iKpPSRQoVWsCIsxoflr5Pz0/R\npjXCxmeFAgMBAAECggEABPZ/F+RENImuSOsVhfC6smHNX5M+GrQmcU2lfEhSnSTU\nR8vsuCzCr/TNRNKkg0RIkOdhc2rbvtOzyTHjzlIqhAzLVcYE4OSEPQZd95UzIR34\nHLLM17jkMkGsd+6n+tIBIIm1ehKduRPF3cqzNtyA4SQxbBFoijLBjXDXVcE/j4fH\n8QCjP08xyRT+/Yw/BW9A/zWai6FMrtxTcfOrSPFOfwbFu9on4ckDIpT3riLCr3T5\n4gupwn2gYpY0SlSRZB/nZXZfruUrdlyT8FB+E6zDZuNadPJut5uSp/E93Ph9XQaD\nXApF6BHNG8PZ5AFhnlqaxCYax06cR0kQV1/1mZG16wKBgQDvxXJXdLPmeYdPTEf1\nFTCYrQFzPd4zV1YVTkqsFhxBxaS4f5gej87R2YvM5GYjsVMu0o24m8unCwvg1Ahh\nC2SxIIBbyUrAxNGWoCrvu0QBVkQJ7sfYClcp4I/B9oVXOgT9QGE9LNGbWw+FYuhU\n3uunx9EF2FABJUCPAKpucUu1ywKBgQC7jz2gqWsWpMzyNmvmx2uGUH4sZffyGDUZ\ntbb0t7crPPmJpn4kYsJwqTpVBfWPvuTj8AzSe6NU8zxm5PLcWOxFPNoYFzJ6Gfe+\nQtXGPBQB0QKEXegor7KpqV8/qvrEeTwYYL0aFnFzBT6jb873wVxYUiZS2yrdz70O\nC+mZngkt7wKBgQCQM8ijzn1P1LFLQM5aGMdkW1Bu9buIVzNflvmT66xM5kg96gcc\nAlNZpCPPM2I2fzRPCbTQXWqq6RrYuczcSJTjbm+kRDigHP8MPwHzskWhJDfBXYl1\nZiqr9fGfrtrc7fkIMssIlsbtT2PTTfv65yMFgkg04rajKbtdBgJ6b8sf5wKBgHgz\nBDvCV27bjrxrRBtSEgax7ypk7tGn0d/4JJgQZMLBAOrGWHDZGeM5kLiMaSMGI4ow\nfQcnVTVL7JnEgB/WnRSCOwLVWvQFUFAOZRH1zpybZhGOXQo2DznL4c7btHnVeD3n\nQUlGuM4NvmbfcLQ2pwezHfxbmM0uJOqrl7lrHlbhAoGAXFl6Vaww8p+JZ7sVpKYb\nRdJsMQs8TDvTrAYs3DhRHspQ3tJcUlQvq783NCzMjw9SodE82VqIF0EG3qhnK8gr\nSYtqDECf37pxLJCzt6F/ZDiYBB40w+rDfC3uC14E9zBOCt+u8LpS1F64s+R01DLM\nDTTG72FicbbkS2nNgiqeh80=\n-----END PRIVATE KEY-----\n",
+  "client_email": "trashowner@smart-trashcan-230506.iam.gserviceaccount.com",
+  "client_id": "114955905021962344234",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/trashowner%40smart-trashcan-230506.iam.gserviceaccount.com"
+}
