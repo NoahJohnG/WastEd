@@ -1,0 +1,19 @@
+Cardboard
+Cardboard box
+Book
+Paper
+Tin
+Aluminum
+Soda can
+Soup can
+Beer can
+Can
+Steel
+Glass
+Jar
+Beer bottle
+Soda bottle
+Bottle
+Wine bottle
+Liquor
+Soft drink
