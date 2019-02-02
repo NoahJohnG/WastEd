@@ -20,7 +20,7 @@
   * key words indicating waste category is compost
   
 ## recycle.txt
-  * key words indicating waste category is compost 
+  * key words indicating waste category is recycling 
 
 ## vidCap.py  
   * records motion tracking video
