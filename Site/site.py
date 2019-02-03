@@ -96,14 +96,16 @@ def index():
 
 @app.route("/leaderboard")
 def leaderboard():
-    users_ref = db.collection(u'names')
+    users_ref = db.collection(u'names').order_by(
+        u'Score', direction =firestore.Query.DESCENDING
+    )
     docs = users_ref.get()
 
-    names = {}
-    for doc in docs:
-        names[doc.id] = doc.to_dict()
+    # names = {}
+    # for doc in docs:
+        # names[doc.id] = doc.to_dict()
 
-    return render_template("leaderboard.html", names=names)
+    return render_template("leaderboard.html", docs=docs)
 
 
 
