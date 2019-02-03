@@ -73,44 +73,53 @@ def main():
 			transaction.update(users_ref, {
 				u'Compost': snapshot.get(u'Compost') + 1
 			})
+			transaction.update(users_ref, {
+				u'Score': (snapshot.get(u'Recycling')*2) + (snapshot.get(u'Compost')*3) - (snapshot.get(u'Trash'))
+			})
 		elif(x==2):
 			transaction.update(users_ref, {
 				u'Recycling': snapshot.get(u'Recycling') + 1
 			})
+			transaction.update(users_ref, {
+				u'Score': (snapshot.get(u'Recycling')*2) + (snapshot.get(u'Compost')*3) - (snapshot.get(u'Trash'))
+			})
 		else:
 			transaction.update(users_ref, {
 				u'Trash': snapshot.get(u'Trash') + 1
+			})
+			transaction.update(users_ref, {
+				u'Score': (snapshot.get(u'Recycling')*2) + (snapshot.get(u'Compost')*3) - (snapshot.get(u'Trash'))
 			})
 
 	trash = True
 	for item in labels:
 		if (item.description + "\n") in recycle_list:
 			print("Recyclable!") # recycle 2
-			recycle_val = 'R'
+			recycle_val = int_to_byte(2)
 			write_to_arduino(recycle_val, ard)
 			update_in_transaction(transaction, users_ref, 2)
 			trash = False
 			break
 		elif (item.description + "\n") in compost_list:
 			print("Compostable!") # compost 1
-			compost_val = 'C'
+			compost_val = int_to_byte(1)
 			write_to_arduino(compost_val, ard)
 			update_in_transaction(transaction, users_ref, 1)
 			trash = False
 			break
 	if trash:
 		print("Trash!") # trash 3
-		trash_val = 'T'
+		trash_val = int_to_byte(3)
 		write_to_arduino(trash_val, ard)
 		update_in_transaction(transaction, users_ref, 3)
 
 def int_to_byte(x):
     if(x ==1):
-        return b'1'
+        return b'C'
     elif(x == 2):
-        return  b'2'
+        return  b'R'
     elif(x==3):
-        return b'3'
+        return b'T'
     else:
         return b'0'
 

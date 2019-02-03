@@ -54,13 +54,13 @@
         <th class="text-primary">Compost</th>
         <th class="text-primary">Score</th>
       </tr>
-  {% for name in names %}
+  {% for doc in docs %}
     <tr>
-      <td class="text-white-50">{{name}}</td>
-      <td class="text-white-50">{{names[name]['Trash']}}</td>
-      <td class="text-white-50">{{names[name]['Recycling']}}</td>
-      <td class="text-white-50">{{names[name]['Compost']}}</td>
-      <td class="text-white-50">{{names[name]['Score']}}</td>
+      <td class="text-white-50">{{doc.id}}</td>
+      <td class="text-white-50">{{doc.get("Trash")}}</td>
+      <td class="text-white-50">{{doc.get("Recycling")}}</td>
+      <td class="text-white-50">{{doc.get("Compost")}}</td>
+      <td class="text-white-50">{{doc.get("Score")}}</td>
     </tr>
   {% endfor %}
     </table>
@@ -68,7 +68,7 @@
 
       <footer class="bg-black small text-center text-white-50">
         <div class="container">
-      “To me, I think people who don't think it's a big deal to toss a plastic bottle in the garbage are not only being irresponsible, but I think they're being disrespectful of all the other humans on earth." - Sophia Bush"
+      “To me, I think people who don't think it's a big deal to toss a plastic bottle in the garbage are not only being irresponsible, but I think they're being disrespectful of all the other humans on earth." - Sophia Bush
         </div>
       </footer>
 
