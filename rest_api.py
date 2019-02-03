@@ -8,6 +8,7 @@ from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
 api = Api(app)
+
 cans = [
     {
         "name": "UU Chandler Lounge",
@@ -111,6 +112,11 @@ class Can(Resource):
         global cans
         cans = [can for can in cans if can["name"] != can]
         return "{} is deleted.".format(name), 200
+
+api.add_resource(Can, )
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 

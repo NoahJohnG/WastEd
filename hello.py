@@ -5,12 +5,25 @@ import time
 import numpy as np
 import cv2 as cv
 import math
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 # Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
 
+# Use the application default credentials
+cred = credentials.ApplicationDefault()
+firebase_admin.initialize_app(cred, {
+  'projectId': "slo-hacks-wasted",
+})
+
+db = firestore.client()
+users_ref = db.collection(u'names').document(u'wastEd OG bin')
+
 def main():
+
 	# Instantiates a client
 	client = vision.ImageAnnotatorClient()
 
@@ -38,6 +51,10 @@ def main():
 	response = client.label_detection(image=image)
 	labels = response.label_annotations
 
+
+	for x in labels:
+		print(x.description)
+
 	# CONFIDENCE VALUE, UPDATE IF NECESSARY
 
 	labels = [x for x in labels if x.score > .5]
@@ -46,24 +63,47 @@ def main():
 		print("Unable to determine item!")
 		quit()
 
+	transaction = db.transaction()
+	snapshot = users_ref.get()
+
+	@firestore.transactional
+	def update_in_transaction(transaction, users_ref, x):
+		snapshot = users_ref.get(transaction=transaction)
+		if(x ==1):
+			transaction.update(users_ref, {
+				u'Compost': snapshot.get(u'Compost') + 1
+			})
+		elif(x==2):
+			transaction.update(users_ref, {
+				u'Recycling': snapshot.get(u'Recycling') + 1
+			})
+		else:
+			transaction.update(users_ref, {
+				u'Trash': snapshot.get(u'Trash') + 1
+			})
+
 	trash = True
 	for item in labels:
 		if (item.description + "\n") in recycle_list:
 			print("Recyclable!") # recycle 2
 			recycle_val = int_to_byte(2)
 			write_to_arduino(recycle_val, ard)
+			update_in_transaction(transaction, users_ref, 2)
 			trash = False
 			break
 		elif (item.description + "\n") in compost_list:
 			print("Compostable!") # compost 1
 			compost_val = int_to_byte(1)
 			write_to_arduino(compost_val, ard)
+			update_in_transaction(transaction, users_ref, 1)
 			trash = False
 			break
 	if trash:
 		print("Trash!") # trash 3
-		trash_val = int_to_byte(1)
+		trash_val = int_to_byte(3)
 		write_to_arduino(trash_val, ard)
+		update_in_transaction(transaction, users_ref, 3)
+
 
 
 
@@ -132,6 +172,8 @@ def wait_trash():
 			break
 	# When everything done, release the capture
 	cap.release()
+
+
 
 if __name__ == "__main__":
 	main()
