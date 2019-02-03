@@ -14,7 +14,7 @@ def main():
 	# Instantiates a client
 	client = vision.ImageAnnotatorClient()
 
-		ard = serial.Serial("/dev/cu.usbmodem1411", 9600, timeout=2)
+	ard = serial.Serial("/dev/cu.usbmodem1411", 9600, timeout=2)
 	time.sleep(2)
 
 	with io.open("recycle.txt", "r") as recycle_file:
@@ -78,18 +78,20 @@ def write_to_arduino(x, ard):
 	msg = ard.readline()
 	print(msg)
 
-def wait_trash():
-	cap = cv.VideoCapture(0)
+def wait_trash(x, w, y, h):
+	cap = cv.VideoCapture(1)
 
 	while(True):
 		if ard.readline():
 			break
 
-	# Capture frame-by-frame
-	ret, frame = cap.read()
+	ret, img = cap.read()
 
 	if ret == True:
-		cv.imwrite('THING.jpg', frame)
+		crop_img = img[x:x+w, y:y-h]
+		hsv_crop = cv.cvtColor(crop_img, cv.COLOR_BGR2HSV)
+		img2 = inRange(frame_HSV, Scalar(low_H, low_S, low_V), Scalar(high_H, high_S, high_V))
+		cv.imwrite('THING.jpg', crop_img)
 
 	cap.release()
 
