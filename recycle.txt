@@ -17,3 +17,7 @@ Bottle
 Wine bottle
 Liquor
 Soft drink
+Aluminum can
+Drink
+Cup
+Plastic
