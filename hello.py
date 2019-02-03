@@ -151,6 +151,7 @@ def wait_trash():
 #			cv.imshow("blak", inv_thresh)
 			k = cv.waitKey(1) & 0xFF
 			if k == ord('q') or count > (size / 4):
+				cv.waitKey(350)
 				cv.imwrite('THING.jpg', crop_img)
 				break
 		else:
