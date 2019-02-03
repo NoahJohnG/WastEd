@@ -100,6 +100,21 @@
   background-size: cover;
 }
 
+.masthead_pic{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .masthead h1 {
   font-family: 'Varela Round';
   font-size: 2.5rem;
@@ -239,7 +254,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    //padding: 20px;
+    padding: 20px;
     border-radius: 5px;
     background-attachment: scroll;
     overflow: hidden;
@@ -342,6 +357,11 @@ header {
   min-height: 25rem;
   width: 100%;
   overflow: hidden;
+}
+
+header img{
+  min-width: 100%;
+  min-height: 100%;
 }
 
 header video {
