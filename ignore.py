@@ -26,9 +26,9 @@ while True:
 
         cv.imshow("blak", inv_thresh)
         k = cv.waitKey(1) & 0xFF
-#        if k == ord('q') or count > (size / 2):
- #           break
-        # cv.imwrite('THING.jpg', crop_img)
+        if k == ord('q') or count > (size / 4):
+            cv.imwrite('THING.jpg', crop_img)
+            cv.imshow("backchoi", crop_img)
     else:
         break
 cap.release()
