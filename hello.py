@@ -81,16 +81,20 @@ def write_to_arduino(x, ard):
 def wait_trash(x, w, y, h):
 	cap = cv.VideoCapture(1)
 
-	while(True):
-		if ard.readline():
-			break
+	with open('params.json') as f:
+    params = json.load(f)
+
+#	while(True):
+#		if ard.readline():
+#			break
 
 	ret, img = cap.read()
 
 	if ret == True:
-		crop_img = img[x:x+w, y:y-h]
+		crop_img = img[params[x1]:praams[x2], params[y1]:params[y2]]
 		hsv_crop = cv.cvtColor(crop_img, cv.COLOR_BGR2HSV)
-		img2 = inRange(frame_HSV, Scalar(low_H, low_S, low_V), Scalar(high_H, high_S, high_V))
+		img2 = inRange(hsv_crop, Scalar(params[low_H], params[low_S], params[low_V]), Scalar(params[high_H], params[high_S], params[high_V]))
+
 		cv.imwrite('THING.jpg', crop_img)
 
 	cap.release()
