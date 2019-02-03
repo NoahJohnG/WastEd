@@ -82,8 +82,7 @@ def wait_trash():
 	cap = cv.VideoCapture(0)
 
 	while(True):
-		dist = ard.readline()
-		if dist < threshhold:
+		if ard.readline():
 			break
 
 	# Capture frame-by-frame
