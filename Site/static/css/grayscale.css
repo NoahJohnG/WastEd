@@ -115,12 +115,6 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-.masthead #leaderboard{
-  background: -webkit-linear-gradient(#baebe7, #ffffffb9);
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-}
-
 .masthead h2#leaderboard{
   -webkit-text-fill-color: white;
 }
@@ -130,7 +124,7 @@
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.8rem;
-  background: -webkit-linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255, 0.555));
+  background: -webkit-linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255, 0.192));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
