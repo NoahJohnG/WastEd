@@ -17,17 +17,15 @@ def main():
 		ard = serial.Serial("/dev/cu.usbmodem1411", 9600, timeout=2)
 	time.sleep(2)
 
+	with io.open("recycle.txt", "r") as recycle_file:
+		recycle_list = recycle_file.readlines()
+	with io.open("compost.txt", "r") as compost_file:
+		compost_list = compost_file.readlines()
+
+	file_name = os.path.join(os.path.dirname(__file__),'THING.jpg')
+
 	while True:
 		wait_trash()
-
-		# The name of the image file to annotate
-		file_name = os.path.join(
-			os.path.dirname(__file__),'THING.jpg')
-
-		with io.open("recycle.txt", "r") as recycle_file:
-			recycle_list = recycle_file.readlines()
-		with io.open("compost.txt", "r") as compost_file:
-			compost_list = compost_file.readlines()
 
 		# Loads the image into memory
 		with io.open(file_name, 'rb') as image_file:
