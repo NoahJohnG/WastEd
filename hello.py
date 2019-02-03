@@ -2,6 +2,9 @@ import io
 import os
 import serial
 import time
+import numpy as np
+import cv2 as cv
+import math
 
 # Imports the Google Cloud client library
 from google.cloud import vision
@@ -11,9 +14,11 @@ def main():
 	# Instantiates a client
 	client = vision.ImageAnnotatorClient()
 
+	wait_trash()
+
 	# The name of the image file to annotate
 	file_name = os.path.join(
-		os.path.dirname(__file__),'bread.jpg')
+		os.path.dirname(__file__),'THING.jpg')
 
 	ard = serial.Serial("/dev/cu.usbmodem1411", 9600, timeout=2)
 	time.sleep(2)
@@ -48,13 +53,13 @@ def main():
 			recycle_val = int_to_byte(2)
 			write_to_arduino(recycle_val, ard)
 			trash = False
-			break;
+			break
 		elif (item.description + "\n") in compost_list:
 			print("Compostable!") # compost 1
 			compost_val = int_to_byte(1)
 			write_to_arduino(compost_val, ard)
 			trash = False
-			break;
+			break
 	if trash:
 		print("Trash!") # trash 3
 		trash_val = int_to_byte(1)
@@ -76,6 +81,57 @@ def write_to_arduino(x, ard):
 	ard.write(x)
 	time.sleep(2)
 	msg = ard.readline()
-    print(msg)
+	print(msg)
+
+def wait_trash():
+	cap = cv.VideoCapture(0)
+
+	fgbg = cv.createBackgroundSubtractorMOG2()
+	# Setup fbgb paramaters
+	fgbg.setVarThreshold(200)
+
+	# Setup initial location of window
+	r,h,c,w = 250,int(cap.get(4)/1.75),400,int(cap.get(3)/1.75) # simply hardcoded the values
+	track_window = (c,r,w,h)
+
+	# Setup the termination criteria, either 10 iteration or move by atleast 1 pt
+	term_crit = ( cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 1 )
+
+	# Setup stage
+	stage = (int(cap.get(3)/2), int(cap.get(4)/2))
+	dist = 0
+
+	while(True):
+		# Capture frame-by-frame
+		ret, frame = cap.read()
+
+		dist = math.sqrt((stage[0]-int(track_window[0] + track_window[2]/2))**2 + (stage[1] - int(track_window[1] + track_window[3]/2))**2)
+
+		if ret == True:
+			# Apply Mask
+			fgmask = fgbg.apply(frame)
+
+			# apply meanshift to get the new location
+			ret, track_window = cv.meanShift(fgmask, track_window, term_crit)
+
+			if dist < 100:
+				# Output frame after waiting a second and a half
+				cv.waitKey(1500)
+				cv.imwrite('THING.jpg', frame)
+				break
+			x,y,w,h = track_window
+			center = (int(x + w/2), int(y + h/2))
+			img2 = cv.circle(fgmask, stage, 50, 100, 2)
+			img2 = cv.circle(img2, center, 5, 255,2)
+			cv.imshow('waiting', img2)
+
+			k =  cv.waitKey(1) & 0xFF
+			if k == ord('q'):
+				break
+		else:
+			break
+	# When everything done, release the capture
+	cap.release()
+
 if __name__ == "__main__":
 	main()
