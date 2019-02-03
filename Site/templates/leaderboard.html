@@ -56,11 +56,11 @@
       </tr>
   {% for doc in docs %}
     <tr>
-      <td>{{doc.id}}</td>
-      <td>{{doc.get("Trash")}}</td>
-      <td>{{doc.get("Recycling")}}</td>
-      <td>{{doc.get("Compost")}}</td>
-      <td>{{doc.get("Score")}}</td>
+      <td class="text-white-50">{{doc.id}}</td>
+      <td class="text-white-50">{{doc.get("Trash")}}</td>
+      <td class="text-white-50">{{doc.get("Recycling")}}</td>
+      <td class="text-white-50">{{doc.get("Compost")}}</td>
+      <td class="text-white-50">{{doc.get("Score")}}</td>
     </tr>
   {% endfor %}
     </table>
