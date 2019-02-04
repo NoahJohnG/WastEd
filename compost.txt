@@ -2,3 +2,6 @@ Food
 Bread
 Orange
 Egg
+Plant
+Fruit
+Wood

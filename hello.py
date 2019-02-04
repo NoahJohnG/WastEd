@@ -5,6 +5,7 @@ import time
 import numpy as np
 import cv2 as cv
 import math
+import json
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -30,10 +31,9 @@ def main():
 	wait_trash()
 
 	# The name of the image file to annotate
-	file_name = os.path.join(
-		os.path.dirname(__file__),'THING.jpg')
+	file_name = os.path.join(os.path.dirname(__file__),'THING.jpg')
 
-	ard = serial.Serial("/dev/cu.usbmodem1411", 9600, timeout=2)
+	ard = serial.Serial("COM9", 9600, timeout=2)
 	time.sleep(2)
 
 	with io.open("recycle.txt", "r") as recycle_file:
@@ -131,13 +131,14 @@ def write_to_arduino(x, ard):
 
 def wait_trash():
 	cap = cv.VideoCapture(1)
+	time.sleep(2)
 
 	with open('calibration.json') as f:
 		params = json.load(f)
 
 	while True:
 		ret, img = cap.read()
-		
+
 		if ret == True:
 			crop_img = img[params["y2"]:params["y1"], params["x1"]:params["x2"]]
 			hsv_crop = cv.cvtColor(crop_img, cv.COLOR_BGR2HSV)
@@ -147,11 +148,14 @@ def wait_trash():
 			#Count number of white pixels
 			size = inv_thresh.size
 			count = cv.countNonZero(inv_thresh)
-
-#			cv.imshow("blak", inv_thresh)
+			cv.imshow("crop", crop_img)
+			cv.imshow("blak", inv_thresh)
 			k = cv.waitKey(1) & 0xFF
-			if k == ord('q') or count > (size / 4):
-				cv.waitKey(350)
+			if k == ord('q') or count > (size / 3):
+				time.sleep(3)
+				ret, img = cap.read()
+				crop_img = img[params["y2"]:params["y1"], params["x1"]:params["x2"]]
+
 				cv.imwrite('THING.jpg', crop_img)
 				break
 		else:
