@@ -13,7 +13,7 @@ with open('calibration.json') as f:
 
 while True:
     ret, img = cap.read()
-    
+
     if ret == True:
         crop_img = img[params["y2"]:params["y1"], params["x1"]:params["x2"]]
         hsv_crop = cv.cvtColor(crop_img, cv.COLOR_BGR2HSV)
@@ -28,7 +28,7 @@ while True:
         k = cv.waitKey(1) & 0xFF
         if k == ord('q') or count > (size / 4):
             cv.imwrite('THING.jpg', crop_img)
-            cv.imshow("backchoi", crop_img)
+            cv.imshow("bakchoi", crop_img)
     else:
         break
 cap.release()
