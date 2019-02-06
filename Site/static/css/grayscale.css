@@ -92,8 +92,10 @@
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.1)), color-stop(75%, rgba(22, 22, 22, 0.5)), to(#161616)), url("../static/img/leaderboard-bg.jpg");
-  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../static/img/leaderboard-bg.jpg");
+
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.1)), color-stop(75%, rgba(22, 22, 22, 0.5)), to(#161616)), url("../img/leaderboard-bg.jpg");
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../img/leaderboard-bg.jpg");
+  background-image: url(../img/leaderboard-bg.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -132,6 +134,26 @@
 .masthead h2 {
   max-width: 20rem;
   font-size: 1rem;
+}
+
+.masthead_pic{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header img{
+  min-width: 100%;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {

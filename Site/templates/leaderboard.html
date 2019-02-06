@@ -21,22 +21,32 @@
 
   <body>
 
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">WastEd Home</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
     <header class="masthead">
       <div class="overlay"></div>
       <div class="masthead_pic">
-      <img src="../static/img/leaderboard-gray-bg.jpg">
+        <img src="../static/img/leaderboard-gray-bg.jpg">
       </div>
       <div class="container d-flex h-100 align-items-center">
         <div class="mx-auto text-center">
           <h1 class="mx-auto my-0 text-uppercase">Wasted Leaderboard</h1>
-          <h2 id = "leaderboard" class="text-white-50 mx-auto mt-2 mb-5">Track your score and compare statistics with other WastEd users!</h2>
-          <a href="#leaderboard" class="btn btn-primary js-scroll-trigger">See the Scores</a><br/><br/>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">Track your score and compare statistics with other WastEd users!</h2>
+          <a href="#leaderboard" class="btn btn-primary js-scroll-trigger">See the Scores</a>
       </div>
     </div>
   </header>
 
   <section id="leaderboard" class="class-section">
-    <table class="table about-section" style="margin-bottom: 0 !important;">
+    <table class="table about-section">
       <tr>
         <th class="text-primary">Name</th>
         <th class="text-primary">Trash</th>
@@ -44,48 +54,21 @@
         <th class="text-primary">Compost</th>
         <th class="text-primary">Score</th>
       </tr>
-        <td class="text-white-50">UU Chandler Lounge</td>
-        <td class="text-white-50">10</td>
-        <td class="text-white-50">3</td>
-        <td class="text-white-50">2</td>
-        <td class="text-white-50">2</td>
-      <tr>
-        <td class="text-white-50">
-        WastEd OG bin
-        <i class="fas fa-user text-primary mb-2" data-toggle="tooltip" title="Current User" id="currentuser"></i>
-        </td>
-        <td class="text-white-50">6</td>
-        <td class="text-white-50">13</td>
-        <td class="text-white-50">4</td>
-        <td class="text-white-50">4</td>
-      </tr>
-      <tr>
-        <td class="text-white-50">Chumash Auditorium</td>
-        <td class="text-white-50">9</td>
-        <td class="text-white-50">3</td>
-        <td class="text-white-50">2</td>
-        <td class="text-white-50">0</td>
-      </tr>
-      <tr>
-        <td class="text-white-50">The Ave</td>
-        <td class="text-white-50">20</td>
-        <td class="text-white-50">2</td>
-        <td class="text-white-50">1</td>
-        <td class="text-white-50">1</td>
-      </tr>
-      <tr>
-        <td class="text-white-50">Baker Science</td>
-        <td class="text-white-50">5</td>
-        <td class="text-white-50">8</td>
-        <td class="text-white-50">2</td>
-        <td class="text-white-50">3</td>
-      </tr>
+  {% for doc in docs %}
+    <tr>
+      <td class="text-white-50">{{doc.id}}</td>
+      <td class="text-white-50">{{doc.get("Trash")}}</td>
+      <td class="text-white-50">{{doc.get("Recycling")}}</td>
+      <td class="text-white-50">{{doc.get("Compost")}}</td>
+      <td class="text-white-50">{{doc.get("Score")}}</td>
+    </tr>
+  {% endfor %}
     </table>
   </section>
 
       <footer class="bg-black small text-center text-white-50">
         <div class="container">
-      “To me, I think people who don't think it's a big deal to toss a plastic bottle in the garbage are not only being irresponsible, but I think they're being disrespectful of all the other humans on earth." - Sophia Bush"
+      “To me, I think people who don't think it's a big deal to toss a plastic bottle in the garbage are not only being irresponsible, but I think they're being disrespectful of all the other humans on earth." - Sophia Bush
         </div>
       </footer>
 
@@ -96,7 +79,6 @@
   <script src="../static/css/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="../static/js/grayscale.js?2"></script>
-
+  <script src="../static/js/grayscale.min.js"></script>
   </body>
 </html>
