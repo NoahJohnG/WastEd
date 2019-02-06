@@ -22,7 +22,7 @@ def index():
 @app.route("/leaderboard")
 def leaderboard():
     users_ref = db.collection(u'names').order_by(
-        u'Score', direction =firestore.Query.DESCENDING
+        u'Score', direction = firestore.Query.DESCENDING
     )
     docs = users_ref.get()
 
